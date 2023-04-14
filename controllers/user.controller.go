@@ -36,3 +36,13 @@ func (u *UserController) UpdateUser(ctx *gin.Context) {
 func (u *UserController) DeleteUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, "")
 }
+
+func (ux *UserController) RegisterUserRoutes(rg *gin.RouterGroup){
+	userRoute := rg.Group("/user")
+	userRoute.POST("/create",ux.CreateUser)
+	userRoute.PATCH("/update",ux.UpdateUser)
+	userRoute.GET("/getall",ux.GetAllUsers)
+	userRoute.DELETE("/delete",ux.DeleteUser)
+	userRoute.GET("/get/:name",ux.GetUser)
+
+}
